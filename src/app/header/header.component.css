@@ -1,0 +1,13 @@
+.modal-content {
+   border: 0px; 
+}
+.modal-content .modal-header {
+   background-color: #c300ff;
+   color: floralwhite; 
+}
+.modal-content .modal-header button {
+   color: floralwhite; 
+}
+.modal-content .modal-body {
+   background-color: #eac8ff; 
+}
