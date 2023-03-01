@@ -1,12 +1,10 @@
-import { product } from "./product"
-
-export class store {
-   id!: string;
+export class Store {
+   _id!: string;
    img!: string;
    name!: string;
    owner!: string;
+   ownerId!: string;
    category!: string;
    title!: string;
    description!: string;
-   products!: product[] | string[];
 }

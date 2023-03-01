@@ -1,12 +1,15 @@
-import { comment } from "./comment"
+import { Comment } from "./comment"
 
-export class product {
-   id!: number;
+export class Product {
+   _id!: string;
+   store!: string;
+   storeId!: string;
    img!: string;
-   type!: string;
+   category!: string;
    title!: string;
    description!: string;
    quantity!: number;
+   sizes!: string[];
    price!: number;
-   comments!: comment[] | string[];
+   comments!: Comment[];
 } 
