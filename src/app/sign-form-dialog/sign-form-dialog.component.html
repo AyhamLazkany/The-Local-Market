@@ -1,48 +1,51 @@
 <div class="modal-dialog">
    <div class="modal-content login-container">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #btnClose></button>
       <div>
-         <input id="item-1" type="radio" name="item" class="sign-in" checked><label for="item-1" class="item">Sign
-            In</label>
+         <input id="item-1" type="radio" name="item" class="sign-in" checked><label for="item-1" class="item">Sign In</label>
          <input id="item-2" type="radio" name="item" class="sign-up"><label for="item-2" class="item">Sign Up</label>
-         <form class="login-form">
-            <div class="sign-in-htm">
+         <div class="login-form">
+            <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()" class="sign-in-htm">
                <div class="group">
-                  <input placeholder="Username" id="user" type="text" class="input">
+                  <input placeholder="Username" id="user" name="username" type="text" class="input" [(ngModel)]="user.username"  #username="ngModel" required>
                </div>
                <div class="group">
-                  <input placeholder="Password" id="pass" type="password" class=" input" data-type="password">
+                  <input placeholder="Password" id="pass" name="password" type="password" class="input" data-type="password" [(ngModel)]="user.password"  #password="ngModel" required>
                </div>
+               <mat-error *ngIf="errMess">{{errMess}}</mat-error>
+               <hr *ngIf="errMess">
                <div class="group">
-                  <input type="submit" class="button" value="Sign In">
+                  <input type="submit" class="button" value="Sign In" [disabled]="loginForm.form.invalid">
                </div>
                <div class="hr"></div>
                <div class="signfooter">
-                  <a class="a" href="#forgot ">Forgot Password?</a>
+                  <a class="a" href="#forgot">Forgot Password?</a>
                </div>
-            </div>
-            <div class="sign-up-htm">
+            </form>
+            <form novalidate #signupForm="ngForm" (ngSubmit)="onSignup()" class="sign-up-htm">
                <div class=" group">
-                  <input placeholder="Username " id="user" type="text" class="input">
-               </div>
-               <div class=" group">
-                  <input placeholder="Email adress" id="pass" type="text" class="input">
+                  <input placeholder="Username " id="user" name="createdusername"  type="text" class="input" [(ngModel)]="createdUser.username"  #createdusername="ngModel" required>
                </div>
                <div class=" group">
-                  <input placeholder="Password" id="pass" type=" password" class="input" data-type="password">
+                  <input placeholder="Email adress" id="pass" name="createdemail"  type="text" class="input" [(ngModel)]="createdUser.email"  #createdemail="ngModel" required>
+               </div>
+               <div class=" group">
+                  <input placeholder="Phone Number" id="pass" name="createdphonenumber" type="text" class="input" [(ngModel)]="createdUser.phone"  #createdphonenumber="ngModel" required>
                </div>
                <div class="group">
-                  <input placeholder="Repeat password" id="pass" type="password" class=" input" data-type="password">
+                  <input placeholder="Password" id="pass" name="createdpassword"  type="password" class=" input" data-type="password" [(ngModel)]="createdUser.password"  #createdpassword="ngModel" required>
                </div>
+               <mat-error *ngIf="SignupErrMess"> {{SignupErrMess}} </mat-error>
+               <hr *ngIf="SignupErrMess">
                <div class="group">
-                  <input type="submit" class="button" value="Sign Up">
+                  <input type="submit" class="button" value="Sign Up" [disabled]="signupForm.form.invalid">
                </div>
                <div class="hr"></div>
                <div class="signfooter">
                   <a class="a" href=""><label for="item-1">Already have an account?</label></a>
                </div>
-            </div>
-         </form>
+            </form>
+         </div>
       </div>
    </div>
 </div>
