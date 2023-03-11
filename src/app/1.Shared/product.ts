@@ -12,4 +12,6 @@ export class Product {
    sizes!: string[];
    price!: number;
    comments!: Comment[];
+   createdAt!: string;
+   updatedAt!: string;
 } 

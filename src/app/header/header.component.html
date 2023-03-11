@@ -13,34 +13,31 @@
             <li><a routerLink="/home">Home</a></li>
             <li><a routerLink="/about">About</a></li>
             <li><a routerLink="/services">Services</a></li>
-            <li *ngIf="newUser.seller"><a routerLink="/market">Market</a></li>
+            <li *ngIf="isLogged"><a routerLink="/market">Market</a></li>
             <li><a routerLink="/contact">Contact</a></li>
             <li class="d-none d-sm-block"></li>
-            <li *ngIf="newUser.seller" class="d-none d-sm-block"></li>
-            <li *ngIf="newUser.seller" class="d-none d-sm-block"></li>
-            <li *ngIf="newUser.seller" class="d-none d-sm-block"></li>
-            <li *ngIf="newUser.seller" class="d-none d-sm-block"></li>
+            <li *ngIf="isLogged" class="d-none d-sm-block"></li>
+            <li *ngIf="isLogged" class="d-none d-sm-block"></li>
          </ul>
       </nav>
-      <span *ngIf="!newUser.seller" class="navbar-text login-btn-span">
+      <span *ngIf="!isLogged" class="navbar-text login-btn-span">
          <a id="login-btn" type="button" data-bs-toggle="modal" data-bs-target="#sign-dialog">
             Login <span class="fa fa-sign-in"></span>
          </a>
       </span>
-      <span *ngIf="newUser.seller" class="dropdown  profile-dropdown-span">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      <span *ngIf="isLogged" class="dropdown  profile-dropdown-span">
+         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/img/users/fox.jpg" width="40"
                height="40" class="rounded-circle">
-               <span class="d-none d-sm-inline">&nbsp;{{newUser.firstname}}&nbsp;{{newUser.lastname}}</span>
-               <span class="d-inline d-sm-none">&nbsp;{{newUser.firstname}}</span>
+               <span class="d-inline">&nbsp;@{{username}}</span>
          </a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Log Out</a></li>
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
          </ul>
       </span>
    </div>
 </header>
-<app-sign-form-dialog class="modal fade" id="sign-dialog" tabindex="-1" aria-labelledby="exampleModalLabel"
+<app-sign-form-dialog (login)="onLogin()" class="modal fade" id="sign-dialog" tabindex="-1" aria-labelledby="exampleModalLabel"
    aria-hidden="true">
 </app-sign-form-dialog>

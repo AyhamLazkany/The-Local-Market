@@ -1,203 +1,57 @@
-<main id="main">
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/market-1.jpg');">
+  <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/Shop-1.jpg');">
-    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+    <h2>Store</h2>
+    <ol>
+      <li><a routerLink="/">Home</a></li>
+      <li>Market</li>
+    </ol>
 
-      <h2>Store</h2>
-      <ol>
-        <li><a routerLink="/">Home</a></li>
-        <li>Market</li>
-      </ol>
-
-    </div>
   </div>
+</div>
+<main id="main">
 
   <section id="store" class="store">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <div class="row gy-4 stores-list">
+      <div class="row gy-4 stores-list" *ngIf="stores">
 
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
+        <div class="col-xl-4 col-6 m-1 p-0" *ngFor="let store of stores" routerLink="/store/{{store._id}}">
+          <div class="store-item position-relative h-50" style="border-radius: 15px !important;">
 
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-1.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
+            <div class="store-img position-relative overflow-hidden"
+              style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
+              <img src="{{baseURL + store.img}}" class="img-fluid" alt="">
+              <span class="store-category">{{store.category}}</span>
             </div>
 
             <div class="store-content d-flex flex-column">
 
-              <h3 class="store-title">Store name</h3>
+              <h3 class="store-title">{{store.name}}</h3>
 
               <div class="meta d-flex align-items-center">
                 <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
+                  <i class="bi bi-person"></i> <span class="ps-2">{{store.owner}}</span>
                 </div>
               </div>
 
-              <p>Store description</p>
+              <p>{{store.description}}</p>
 
               <hr>
 
-              <a [routerLink]="['/store']" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
+              <a class="readmore stretched-link"><span>Viwe Products</span><i class="bi bi-arrow-right"></i></a>
 
             </div>
 
           </div>
-        </div><!-- End post list item -->
+        </div><!-- End store list item -->
+        <div *ngIf="errMess">
+          <h2>Error</h2>
+          <h4>{{errMess}}</h4>
+        </div>
+        <p></p>
 
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
-
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-2.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
-            </div>
-
-            <div class="store-content d-flex flex-column">
-
-              <h3 class="post-title">Store name</h3>
-
-              <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
-                </div>
-              </div>
-
-              <p>Store description</p>
-
-              <hr>
-
-              <a href="store-details.html" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-          </div>
-        </div><!-- End post list item -->
-
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
-
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-3.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
-            </div>
-
-            <div class="store-content d-flex flex-column">
-
-              <h3 class="post-title">Store name</h3>
-
-              <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
-                </div>
-              </div>
-
-              <p>Store description</p>
-
-              <hr>
-
-              <a href="store-details.html" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-          </div>
-        </div><!-- End post list item -->
-
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
-
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-4.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
-            </div>
-
-            <div class="store-content d-flex flex-column">
-
-              <h3 class="post-title">Store name</h3>
-
-              <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
-                </div>
-              </div>
-
-              <p>Store description</p>
-
-              <hr>
-
-              <a href="store-details.html" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-          </div>
-        </div><!-- End post list item -->
-
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
-
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-5.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
-            </div>
-
-            <div class="store-content d-flex flex-column">
-
-              <h3 class="post-title">Store name</h3>
-
-              <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
-                </div>
-              </div>
-
-              <p>Store description</p>
-
-              <hr>
-
-              <a href="store-details.html" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-          </div>
-        </div><!-- End post list item -->
-
-        <div class="col-xl-4 col-md-6">
-          <div class="store-item position-relative h-100" style="border-radius: 15px !important;">
-
-            <div class="store-img position-relative overflow-hidden" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="assets/img/store/store-6.jpg" class="img-fluid" alt="">
-              <span class="store-category">Store type</span>
-            </div>
-
-            <div class="store-content d-flex flex-column">
-
-              <h3 class="post-title">Store name</h3>
-
-              <div class="meta d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person"></i> <span class="ps-2">Store owner</span>
-                </div>
-              </div>
-
-              <p>Store description</p>
-
-              <hr>
-
-              <a href="store-details.html" class="readmore stretched-link"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-
-            </div>
-
-          </div>
-        </div><!-- End post list item -->
-
-      </div><!-- End store posts list -->
+      </div><!-- End store list -->
 
       <div class="store-pagination">
         <ul class="justify-content-center">

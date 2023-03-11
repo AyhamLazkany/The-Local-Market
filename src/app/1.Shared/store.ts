@@ -5,6 +5,9 @@ export class Store {
    owner!: string;
    ownerId!: string;
    category!: string;
+   categories!: string[];
    title!: string;
    description!: string;
+   createdAt!: string;
+   updatedAt!: string;
 }

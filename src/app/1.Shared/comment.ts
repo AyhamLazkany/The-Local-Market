@@ -4,4 +4,6 @@ export class Comment {
    authorId!: string;
    comment!: string;
    rat!: number;
+   createdAt!: string;
+   updatedAt!: string;
 }

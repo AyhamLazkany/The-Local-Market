@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -29,6 +32,7 @@ import { AuthInterceptor, UnauthorizedInterceptor } from './2.Services/auth.inte
 import { AuthGuardService } from './2.Services/auth-guard.service';
 
 import { baseURL } from './1.Shared/baseurl';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +45,16 @@ import { baseURL } from './1.Shared/baseurl';
     MarketComponent,
     ServiceComponent,
     SFDComponent,
-    StoreComponent
+    StoreComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [

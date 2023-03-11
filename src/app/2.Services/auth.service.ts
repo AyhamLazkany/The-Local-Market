@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { baseURL } from '../1.Shared/baseurl';
-import { ProcessHttpMsgService } from './process-http-msg.service'
+import { ProcessHttpMsgService } from './process-http-msg.service';
+
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 interface AuthResponse {
   status: string;
   success: string;
   token: string;
+  user: any;
+}
+
+interface credentials {
+  authToken: string | any;
+  username: string | any;
+  img: string | any;
 }
 
 interface JWTResponse {
+  success: Boolean;
   status: string;
-  success: string;
   user: any;
 }
 
@@ -22,93 +31,119 @@ interface JWTResponse {
 })
 export class AuthService {
 
-  tokenKey: string = "JWT";
-  token: any = localStorage.getItem(this.tokenKey);
+  TokenKey: string = "JWT";
+  Credentials: credentials | any = localStorage.getItem(this.TokenKey);
   isAuthenticated: Boolean = false;
-  username: Subject<string> | any = new Subject<string>();
   authToken: string | any = undefined;
+  username: string | any = undefined;
+  img: string | any = undefined;
 
-   constructor(private http: HttpClient,
-     private ProcessHttpMsgService: ProcessHttpMsgService) {
-   }
-
-   getUsername(): Observable<string> {
-     return this.username.asObservable();
-   }
-
-   getToken(): string {
-     return this.authToken;
-   }
-
-   sendUsername(name: string) {
-     this.username.next(name);
-   }
-
-   clearUsername() {
-     this.username.next(undefined);
-   }
-
-   useCredentials(credentials: any) {
-     this.isAuthenticated = true;
-     this.sendUsername(credentials.username);
-     this.authToken = credentials.token;
-   }
-
-   destroyUserCredentials() {
-     this.authToken = undefined;
-     this.clearUsername();
-     this.isAuthenticated = false;
-     localStorage.removeItem(this.tokenKey);
-   }
-
-   loadUserCredentials() {
-     const credentials = JSON.parse(this.token);
-     console.log('loadUserCredentials ', credentials);
-     if (credentials && credentials.username !== undefined) {
-       this.useCredentials(credentials);
-       if (this.authToken) {
-        this.checkJWTtoken();
-       }
-     }
-   }
-
-   storeUserCredentials(credentials: any) {
-     console.log('storeUserCredentials ', credentials);
-     localStorage.setItem(this.tokenKey, JSON.stringify(credentials));
-     this.useCredentials(credentials);
-   }
-
-   checkJWTtoken() {
-    this.http.get<JWTResponse>(baseURL + 'users/checkJWTtoken')
-    .subscribe(res => {
-      console.log('JWT Token Valid: ', res);
-      this.sendUsername(res.user.username);
-    },
-    err => {
-      console.log('JWT Token invalid: ', err);
-      this.destroyUserCredentials();
-    });
+  constructor(private http: HttpClient,
+    private ProcessHttpMsgService: ProcessHttpMsgService) {
   }
 
-   signUp() {
+  getUsername(): string {
+    return this.username;
+  }
 
-   }
+  getToken(): string {
+    return this.authToken;
+  }
 
-   logIn(user: any): Observable<any> {
-     return this.http.post<AuthResponse>(baseURL + 'users/login',
-       {'username': user.username, 'password': user.password})
-       .pipe( map(res => {
-           this.storeUserCredentials({username: user.username, token: res.token});
-           return {'success': true, 'username': user.username };
-       }),
-        catchError(error => this.ProcessHttpMsgService.handleError(error)));
-   }
+  useCredentials(credentials: credentials) {
+    this.isAuthenticated = true;
+    this.username = credentials.username;
+    this.authToken = credentials.authToken;
+    this.img = credentials.img;
+  }
 
-   logOut() {
-     this.destroyUserCredentials();
-   }
+  destroyUserCredentials() {
+    this.isAuthenticated = false;
+    this.authToken = undefined;
+    this.username = undefined;
+    this.img = undefined;
+    localStorage.removeItem(this.TokenKey);
+  }
 
-   isLoggedIn(): Boolean {
-     return this.isAuthenticated;
-   }
+  loadUserCredentials() {
+    const credentials = JSON.parse(this.Credentials);
+    console.log('loadUserCredentials ', credentials);
+    if (credentials && credentials.username !== undefined) {
+      this.useCredentials(credentials);
+      if (this.authToken) {
+        this.checkJWTtoken();
+      }
+    };
+  }
+
+  storeUserCredentials(credentials: credentials) {
+    console.log('storeUserCredentials ', credentials);
+    localStorage.setItem(this.TokenKey, JSON.stringify(credentials));
+    this.useCredentials(credentials);
+  }
+
+  checkJWTtoken() {
+    this.http.get<JWTResponse>(baseURL + 'users/checkJWTtoken')
+      .subscribe(res => {
+        console.log('JWT Token Valid: ', res);
+        this.username = res.user.username;
+      }, err => {
+        console.log('JWT Token invalid: ', err);
+        this.destroyUserCredentials();
+      });
+  }
+
+  signUp(user: any): Observable<any> {
+    return this.http.post<JWTResponse>(baseURL + 'users/signup',
+      { 'username': user.username, 'password': user.password, 'email': user.email, 'phone': user.phone })
+      .pipe(map((res) => {
+        if (res.success == true)
+          return { success: res.success, status: 'Signup successfully', user: res.user };
+        else
+          return { success: res.success, status: res.status };
+      }), catchError(error => this.ProcessHttpMsgService.handleError(error)));
+  }
+
+  logIn(user: any): Observable<any> {
+    return this.http.post<AuthResponse>(baseURL + 'users/login',
+      { 'username': user.username, 'password': user.password })
+      .pipe(map(res => {
+        this.storeUserCredentials({ username: res.user.username, authToken: res.token, img: res.user.img });
+        return { success: res.success, status: res.status, user: res.user };
+      }), catchError(error => this.ProcessHttpMsgService.handleError(error)));
+  }
+
+  logOut() {
+    this.destroyUserCredentials();
+  }
+
+  isLoggedIn(): Boolean {
+    return this.isAuthenticated;
+  }
+
+  getUser(username: string): Observable<any> {
+    return this.http.get<any>(baseURL + 'users/' + username)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
+  putUser(username: string, user: any): Observable<any> {
+    return this.http.put<any>(baseURL + 'users/' + username, user, httpOptions)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
+  deleteUser(username: string): Observable<any> {
+    return this.http.put<any>(baseURL + 'users/' + username, httpOptions)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
+
+  usernameChange(username:string): Observable<boolean> {
+    return this.http.get<boolean>(baseURL + `users/canChange?username=${username}`)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
+  emailChange(email:string): Observable<boolean> {
+    return this.http.get<boolean>(baseURL + `users/canChange?email=${email}`)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
+  phoneChange(phone:string): Observable<boolean> {
+    return this.http.get<boolean>(baseURL + `users/canChange?phone=${phone}`)
+    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  }
 }

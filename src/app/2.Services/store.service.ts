@@ -19,9 +19,9 @@ export class StoreService {
     return this.http.get<Store[]>(baseURL + 'stores')
       .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
-  getStoresIds(): Observable<string[] | any> {
-    return this.http.get<Store[]>(baseURL + 'stores')
-      .pipe(map(stores => stores.map(store => store._id)))
+  getStoreNameByOwner(ownerId: string): Observable<string[]> {
+    return this.http.get<Store[]>(baseURL + `stores?ownerId=${ownerId}`)
+      .pipe(map(stores => stores.map(store => store.name)))
       .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
   postStores(store: Store): Observable<Store> {
