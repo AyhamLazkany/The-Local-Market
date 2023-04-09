@@ -7,6 +7,7 @@ import { ContactComponent } from '../contact/contact.component';
 import { MarketComponent } from "../market/market.component";
 import { ServiceComponent } from "../service/service.component";
 import { StoreComponent } from "../store/store.component";
+import { MyStoreComponent } from "../my-store/my-store.component";
 import { ProfileComponent } from "../profile/profile.component"; 
 /* import { FavoritesComponent } from "../favorite/favorite.component";
 import { BayRecsComponent } from "../bayRec/bayRec.component/";
@@ -19,6 +20,7 @@ export const routes: Routes = [
    { path: 'market', component: MarketComponent, canActivate: [AuthGuard] },
    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
    { path: 'store/:id', component: StoreComponent, canActivate: [AuthGuard] },
+   { path: 'myStore', component: MyStoreComponent, canActivate: [AuthGuard] },
 /*    { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard] },
    { path: 'bayRecs', component: BayRecsComponent, canActivate: [AuthGuard] },
    { path: 'saleRecs', component: SaleRecsComponent, canActivate: [AuthGuard] }, */

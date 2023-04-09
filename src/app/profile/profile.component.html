@@ -1,5 +1,4 @@
-<div class="breadcrumbs d-flex align-items-center"
-   style="background-image: url('{{baseURL}}/assets/img/market-1.jpg');">
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{baseURL}}assets/img/market-1.jpg');">
    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
       <h2>Profile</h2>
@@ -21,10 +20,10 @@
                   <img src="{{baseURL + user.img}}" alt="Profile" class="rounded-circle">
                   <h2>{{user.username}}</h2>
                   <div class="social-links mt-2">
-                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                     <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                     <a class="twitter"><i class="bi bi-twitter"></i></a>
+                     <a class="facebook"><i class="bi bi-facebook"></i></a>
+                     <a class="instagram"><i class="bi bi-instagram"></i></a>
+                     <a class="linkedin"><i class="bi bi-linkedin"></i></a>
                   </div>
                </div>
             </div>
@@ -49,6 +48,11 @@
                      </li>
 
                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#my-store">My
+                           Store</button>
+                     </li>
+
+                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change
                            Password</button>
                      </li>
@@ -60,7 +64,7 @@
                         <h5 class="card-title">Profile Details</h5>
 
                         <div class="row">
-                           <div class="col-lg-3 col-md-4 label ">UserName</div>
+                           <div class="col-lg-3 col-md-4 label ">Username</div>
                            <div class="col-lg-9 col-md-8">{{user.username}}</div>
                         </div>
 
@@ -88,21 +92,28 @@
                            <div class="row mb-3">
                               <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                               <div class="col-md-8 col-lg-9">
-                                 <img src="{{baseURL + user.img}}" alt="Profile">
+                                 <img [formGroup]="uploadForm" src="{{userSrcImg}}" alt="Profile">
                                  <div class="pt-2">
-                                    <a class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                                          class="bi bi-upload"></i></a>
+                                    <span class="btn btn-primary btn-sm btn-file">
+                                       <i class="bi bi-upload"></i>
+                                       <input type="file" accept="image/*" (change)="selectUserImg($event)"
+                                          title="Upload new store image">
+                                    </span>
+                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     <a class="btn btn-danger btn-sm" title="Remove my profile image"><i
                                           class="bi bi-trash"></i></a>
                                  </div>
                               </div>
                            </div>
-                           <p>{{editedUser | json}}</p>
+
                            <div class="row mb-3">
-                              <label for="username" class="col-md-4 col-lg-3 col-form-label">UserName</label>
+                              <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                               <div class="col-md-8 col-lg-9">
                                  <input name="username" type="text" class="form-control" id="username"
-                                    value="{{user.username}}" [(ngModel)]="editedUser.username"  #username="ngModel">
+                                    [(ngModel)]="editedUser.username" #username="ngModel"
+                                    placeholder="{{user.username}}">
+                                 <mat-error style="color: red;"
+                                    *ngIf="changeUsernameErrMssg">{{changeUsernameErrMssg}}</mat-error>
                               </div>
                            </div>
 
@@ -110,7 +121,9 @@
                               <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone Number</label>
                               <div class="col-md-8 col-lg-9">
                                  <input name="phone" type="text" class="form-control" id="phone"
-                                    value="{{user.phone}}" [(ngModel)]="editedUser.phone"  #phone="ngModel">
+                                    [(ngModel)]="editedUser.phone" #phone="ngModel" placeholder="{{user.phone}}">
+                                 <mat-error style="color: red;"
+                                    *ngIf="changePhoneErrMssg">{{changePhoneErrMssg}}</mat-error>
                               </div>
                            </div>
 
@@ -118,16 +131,215 @@
                               <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                               <div class="col-md-8 col-lg-9">
                                  <input name="email" type="text" class="form-control" id="email"
-                                    value="{{user.email}}" [(ngModel)]="editedUser.email"  #email="ngModel">
+                                    [(ngModel)]="editedUser.email" #email="ngModel" placeholder="{{user.email}}">
+                                 <mat-error style="color: red;"
+                                    *ngIf="changeEmailErrMssg">{{changeEmailErrMssg}}</mat-error>
                               </div>
                            </div>
 
+                           <div *ngIf="( uploadForm.value.avatar !== null ) && ( progress > 0 )"
+                              class="progress my-2 mx-5">
+                              <div class="progress-bar bg-warning" role="progressbar" attr.aria-valuenow="{{progress}}"
+                                 aria-valuemin="0" aria-valuemax="100" attr.aria-valuenow="{{ progress }}"
+                                 [ngStyle]="{ width: progress + '%' }"></div>
+                           </div>
                            <div class="text-center">
-                              <button type="submit" class="btn btn-warning">Save Changes</button>
+                              <mat-error *ngIf="errMssg">{{errMssg}}</mat-error>
+                           </div>
+                           <div class="row px-3">
+                              <span class="col-12 col-lg-3 d-non d-lg-block"></span>
+                              <button type="submit" class="btn btn-warning col-5 col-lg-2">Save Changes</button>
+                              <span class="col-2 col-lg-5"></span>
+                              <button (click)="deleteUser()" class="btn btn-danger col-5 col-lg-2">Delete
+                                 Account</button>
                            </div>
                         </form><!-- End Profile Edit Form -->
+                        <br *ngIf="success == true">
+                        <div *ngIf="success == true" class="alert alert-warning alert-dismissible fade show"
+                           role="alert">
+                           Update User Information successfully! please login again to update your info!!
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
 
-                     </div>   
+                     </div>
+
+                     <div class="tab-pane fade pt-2" id="my-store">
+
+                        <div class="profile-edit" *ngIf="ShowFormCS == true">
+                           <!-- Store Creat Form -->
+                           <form novalidate #CreatStoreForm="ngForm" (ngSubmit)="CreatStore()">
+                              <div class="row mb-3">
+                                 <label for="storeImage" class="col-md-4 col-lg-3 col-form-label">Store Image</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <img src="{{storeSrcImg}}" class="img-fluid">
+                                    <div class="pt-2">
+                                       <span class="btn btn-primary btn-sm btn-file">
+                                          <i class="bi bi-upload"></i>
+                                          <input type="file" accept="image/*" (change)="selectSroreImg($event)"
+                                             title="Upload new store image">
+                                       </span>
+                                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                       <span class="btn btn-danger btn-sm" title="Remove my store image">
+                                          <i class="bi bi-trash"></i>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Store Name</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <input name="name" type="text" class="form-control" id="name"
+                                       [(ngModel)]="createdStore.name" #name="ngModel" required>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="type" class="col-md-4 col-lg-3 col-form-label">Type</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <input name="type" type="text" class="form-control" id="type"
+                                       [(ngModel)]="createdStore.type" #type="ngModel" required>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="type" class="col-md-4 col-lg-3 col-form-label">Phone Number</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <input name="phone" type="text" class="form-control" id="phone"
+                                       [(ngModel)]="createdStore.phone" #phone="ngModel" required>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="type" class="col-md-4 col-lg-3 col-form-label">FaceBook Page URL</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <input name="fbsrc" type="text" class="form-control" id="fbsrc"
+                                       [(ngModel)]="createdStore.fbsrc" #fbsrc="ngModel" required>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="category" class="col-md-4 col-lg-3 col-form-label">Categories*</label>
+                                 <div class="col-md-8 col-lg-9 row pe-0">
+                                    <div class="col-6 col-md-4 pb-2">
+                                       <input name="categ" type="text" class="form-control" id="categ" [(ngModel)]="cat"
+                                          #categ="ngModel">
+                                    </div>
+                                    <div class="col-4 col-md-2 pb-2">
+                                       <input type="button" class="btn btn-warning"  style="min-width: 100%;max-width: 100%;" value="Add"
+                                          (click)="addToCategory(categ.value)">
+                                    </div>
+                                    <div class="col-6 col-md-4 pb-2">
+                                       <select id="inputState" #category class="form-select">
+                                          <option selected></option>
+                                          <option *ngFor="let categor of createdStore.categories">{{categor}}</option>
+                                       </select>
+                                    </div>
+                                    <div class="col-4 col-md-2 pb-2">
+                                       <input type="button" class="btn btn-warning" style="min-width: 100%;max-width: 100%;" value="Remove"
+                                          (click)="removeCategory(category.value)">
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                 <label for="description" class="col-md-4 col-lg-3 col-form-label">Description*</label>
+                                 <div class="col-md-8 col-lg-9">
+                                    <textarea name="description" class="form-control" style="height: 100px"
+                                       id="description" [(ngModel)]="createdStore.description"
+                                       #description="ngModel"></textarea>
+                                 </div>
+                              </div>
+
+                              <div *ngIf="( uploadForm.value.avatar !== null ) && ( progress > 0 )"
+                                 class="progress my-2 mx-5">
+                                 <div class="progress-bar bg-warning" role="progressbar"
+                                    attr.aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"
+                                    attr.aria-valuenow="{{ progress }}" [ngStyle]="{ width: progress + '%' }"></div>
+                              </div>
+
+                              <div class="text-center">
+                                 <mat-error *ngIf="errMssgCS">{{errMssgCS}}</mat-error>
+                                 <button *ngIf="edit == false" type="submit" class="btn btn-warning"
+                                    [disabled]="CreatStoreForm.form.invalid">Creat Store</button>
+                              </div>
+                           </form><!-- End Store Creat Form -->
+                           <div class="row pt-3 px-3">
+                              <span class="col-0 col-md-4 col-lg-3"></span>
+                              <button (click)="onCancel()" class="btn btn-secondary col-5 col-md-2"
+                                 *ngIf="edit == true">Cancel</button>
+                                 <span class="col-2 col-md-4 col-lg-5"></span>
+                              <button (click)="editStore()" class="btn btn-warning col-5 col-md-2" *ngIf="edit == true">Save</button>
+                           </div>
+                           <br>
+                           <div *ngIf="successCS == true" class="alert alert-success alert-dismissible fade show"
+                              role="alert">
+                              Created Store Successfully !!
+                              <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                 aria-label="Close"></button>
+                           </div>
+
+                        </div>
+                        
+                        <!-- Store Details -->
+                        <div class="profile-overview px-3" *ngIf="ShowFormCS == false">
+                           <h5 class="card-title">Store Details</h5>
+
+                           <div class="row">
+                              <div class="col-12 col-md-8 profile-card pt-4 d-flex flex-column align-items-center">
+                                 <img src="{{baseURL + myStore.img}}" alt="Profile" class="rounded-circle">
+                                 <h2>{{myStore.name}}</h2>
+                                 <div class="social-links mt-2">
+                                    <a class="facebook" href="{{myStore.fbsrc}}" target="_blank"><i
+                                          class="bi bi-facebook"></i></a>
+                                    <a class="instagram"><i class="bi bi-instagram"></i></a>
+                                 </div>
+                                 <div class="col-md-4 d-none d-md-block"></div>
+                              </div>
+                           </div>
+                           <br><br>
+
+                           <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Store Type</div>
+                              <div class="col-lg-9 col-md-8">{{myStore.type}}</div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Categories</div>
+                              <div class="col-lg-9 col-md-8">{{myStore.categories}}</div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Phone Number</div>
+                              <div class="col-lg-9 col-md-8">{{myStore.phone}}</div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Description</div>
+                              <div class="col-lg-9 col-md-8">{{myStore.description}}</div>
+                           </div>
+
+                           <div *ngIf="errMssgCS" class="row">
+                              <mat-error *ngIf="errMssgCS">{{errMssgCS}}</mat-error>
+                           </div>
+
+                           <div class="row pt-3 ps-3">
+                              <button (click)="deletestore()" class="btn btn-danger col-5 col-md-2">Delete
+                                 Store</button>
+                              <span class="col-2 col-lg-1"></span>
+                              <button (click)="onEdit()" class="btn btn-warning col-5 col-md-2">Edit Store</button>
+                           </div>
+                           <br>
+                           <div *ngIf="deleteCS == true" class="alert alert-success alert-dismissible fade show"
+                              role="alert">
+                              Deleted Store Successfully !!
+                              <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                 aria-label="Close"></button>
+                           </div>
+
+                        </div>
+
+                     </div>
 
                      <div class="tab-pane fade pt-3" id="profile-change-password">
                         <!-- Change Password Form -->

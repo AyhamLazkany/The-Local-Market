@@ -4,9 +4,10 @@ export class Store {
    name!: string;
    owner!: string;
    ownerId!: string;
-   category!: string;
+   type!: string;
+   phone!: string;
+   fbsrc!: string;
    categories!: string[];
-   title!: string;
    description!: string;
    createdAt!: string;
    updatedAt!: string;

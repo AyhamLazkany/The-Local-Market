@@ -19,7 +19,7 @@ export class ProductService {
     return this.http.get<Product[]>(baseURL + `products?storeId=${storeId}`)
       .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
-  postProducts(Product: Product): Observable<Product> {
+  postProducts(Product: any): Observable<Product> {
     return this.http.post<Product>(baseURL + 'products', Product, httpOptions)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
@@ -34,7 +34,7 @@ export class ProductService {
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
   deleteProduct(id: string): Observable<Product> {
-    return this.http.put<Product>(baseURL + 'products/' + id, httpOptions)
+    return this.http.delete<Product>(baseURL + 'products/' + id, httpOptions)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
 

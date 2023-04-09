@@ -1,56 +1,83 @@
-<div class="breadcrumbs d-flex align-items-center"
-   style="background-image: url('{{baseURL}}/assets/img/market-1.jpg');">
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{baseURL + store.img}}');">
    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-      <h2>Store Name</h2>
       <ol>
          <li><a routerLink="/">Home</a></li>
          <li><a routerLink="/market">Market</a></li>
          <li>{{store.name}}</li>
       </ol>
+      <br>
+      <h2 class="text-warning">{{store.name}}</h2>
+      <br>
+      <h4>
+         <ul>
+            <li class="d-inline"><span class="badge rounded-pill bg-light">
+                  <i class="bi bi-person text-warning">&nbsp;{{store.owner}}</i></span></li>
+            <li class="d-inline"><span class="px-5 mx-5"></span></li>
+            <li class="d-inline"><span class="badge rounded-pill bg-light">
+                  <i class="bi bi-clock text-warning">&nbsp;<time>{{store.createdAt}}</time></i></span></li>
+         </ul>
+      </h4>
+      <br>
+      <p class="text-white" data-aos="fade-up">{{store.description}}</p>
    </div>
 </div>
 <main id="main">
 
    <!-- ======= store Details Section ======= -->
-   <section id="store" class="store">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+   <div class="container my-5">
 
-         <div class="row g-5">
+      <h2 class="text-center" style="font-family: 'Courier New', Courier, monospace;">Categry</h2>
 
-            <div class="col-12">
+      <div class="row">
 
-               <article class="store-details">
+         <div class="col-6 col-md-3 p-2">
 
-                  <div class="post-img">
-                     <img style="background-image: url('{{baseURL}}assets/img/store/store-1.jpg');" class="img-fluid"
-                        style="width: 100%; height: 350px;">
+            <div class="card">
+
+               <div class="image-container">
+
+                  <div class="first">
+
+                     <div class="d-flex justify-content-between align-items-center">
+                        <span class="wishlist"><i class="fa fa-heart-o"></i></span>
+                     </div>
                   </div>
 
-                  <h2 class="title">{{store.name}}</h2>
+                  <img src="https://i.imgur.com/8JIWpnw.jpg" class="img-fluid rounded thumbnail-image">
 
-                  <div class="meta-top">
-                     <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                              href="store-details.html">{{store.owner}}</a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                              href="store-details.html"><time>{{store.createdAt}}</time></a></li>
-                     </ul>
-                  </div><!-- End meta top -->
-                  <br>
-                  <div class="content">
-                     <blockquote>
-                        <p>
-                           {{store.description}}
-                        </p>
-                     </blockquote>
-                  </div><!-- End post content -->
-               </article><!-- End store post -->
+               </div>
+
+               <div class="product-detail-container p-2">
+                  
+                  <div class="d-flex justify-content-between align-items-center" style="min-height: 80px;">
+                     <h5 class="dress-name">White traditional long dress</h5>
+                     <div class="d-flex flex-column mb-2">
+                        <span class="new-price text-warning">$3.99</span>
+                     </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center pt-1">
+                     <div class="color-select d-flex ">
+                        <h5><span class="badge rounded-pill bg-danger text-white">category</span></h5>
+                     </div>
+                     <div class="d-flex">
+                        <span class="item-size me-1 mb-1 btn bg-warning text-white"><b>sm</b></span>
+                     </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center pt-1">
+                     <div>
+                        <i class="fa fa-star rating-star"></i>
+                        <span class="rating-number">4.8</span>
+                     </div>
+                  </div>
+
+               </div>
             </div>
-
          </div>
 
       </div>
-   </section><!-- End store Details Section -->
+
+   </div>
 
 </main>

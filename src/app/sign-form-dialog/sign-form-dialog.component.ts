@@ -11,7 +11,7 @@ import { AuthService } from '../2.Services/auth.service';
 export class SFDComponent implements OnInit {
   @ViewChild('btnClose') btnClose: any;
   user = {username: '', password: ''};
-  createdUser = {username: '', password: '', email: '', phone: ''};
+  createdUser = {username: '', password: '', email: '', phone: '', img: 'assets/img/users/fox.jpg'};
   errMess!: string;
   SignupErrMess!: string;
   @Output() login = new EventEmitter<void>();

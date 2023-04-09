@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { AuthService } from '../2.Services/auth.service';
 
 interface credentials {
@@ -17,15 +17,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isLogged!: Boolean;
   username!: string;
+  img!: string;
+  seller!: boolean;
   credentials!: credentials; 
 
-  constructor(private authService: AuthService) { };
+  constructor(private authService: AuthService, @Inject('BaseURL') public baseURL: any) { };
 
   ngOnInit() {
     this.authService.loadUserCredentials();
     this.isLogged = this.authService.isLoggedIn();
     if (this.isLogged) {
       this.username = this.authService.getUsername();
+      this.img = this.authService.getImg();
+      this.authService.getUser(this.username)
+        .subscribe((user) => this.seller = user.seller)
     }
   }
 
@@ -34,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isLogged = this.authService.isLoggedIn();
     if (this.isLogged) {
       this.username = this.authService.getUsername();
+      this.img = this.authService.getImg();
     }
     }
 
@@ -43,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logOut();
-    this.isLogged = false;
+    setTimeout(() => {window.location.reload();}, 2000);
   }
 
 }

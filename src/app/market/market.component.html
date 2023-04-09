@@ -16,13 +16,13 @@
 
       <div class="row gy-4 stores-list" *ngIf="stores">
 
-        <div class="col-xl-4 col-6 m-1 p-0" *ngFor="let store of stores" routerLink="/store/{{store._id}}">
+        <div class="col-xl-4 col-6 p-2" *ngFor="let store of stores" routerLink="/store/{{store._id}}">
           <div class="store-item position-relative h-50" style="border-radius: 15px !important;">
 
             <div class="store-img position-relative overflow-hidden"
               style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
               <img src="{{baseURL + store.img}}" class="img-fluid" alt="">
-              <span class="store-category">{{store.category}}</span>
+              <span class="store-category">{{store.type}}</span>
             </div>
 
             <div class="store-content d-flex flex-column">

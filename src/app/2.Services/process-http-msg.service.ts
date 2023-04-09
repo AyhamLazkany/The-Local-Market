@@ -12,8 +12,8 @@ export class ProcessHttpMsgService {
   public handleError(error: HttpErrorResponse | any) {
     let errMsg: string;
     if (error.error instanceof ErrorEvent) errMsg = error.error.message;
-    else errMsg = `${error.status} - ${error.statusText || ''} \n ${error.error}`;
-    return throwError(errMsg);
+    else errMsg = `${error.status} - ${error.status}\nMessage: ${error.message}`;
+    return throwError(() => {return errMsg});
   }
 
 }

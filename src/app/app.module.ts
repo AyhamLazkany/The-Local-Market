@@ -33,6 +33,7 @@ import { AuthGuardService } from './2.Services/auth-guard.service';
 
 import { baseURL } from './1.Shared/baseurl';
 import { ProfileComponent } from './profile/profile.component';
+import { MyStoreComponent } from './my-store/my-store.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProfileComponent } from './profile/profile.component';
     ServiceComponent,
     SFDComponent,
     StoreComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyStoreComponent,
   ],
   imports: [
     BrowserModule,

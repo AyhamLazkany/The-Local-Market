@@ -25,6 +25,10 @@ interface JWTResponse {
   status: string;
   user: any;
 }
+interface CanResponse {
+  success: boolean;
+  status: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +48,10 @@ export class AuthService {
 
   getUsername(): string {
     return this.username;
+  }
+
+  getImg(): string {
+    return this.img;
   }
 
   getToken(): string {
@@ -123,27 +131,33 @@ export class AuthService {
 
   getUser(username: string): Observable<any> {
     return this.http.get<any>(baseURL + 'users/' + username)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+      .pipe(catchError(this.ProcessHttpMsgService.handleError));
   }
-  putUser(username: string, user: any): Observable<any> {
-    return this.http.put<any>(baseURL + 'users/' + username, user, httpOptions)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  putUser(_id: string, user: any): Observable<any> {
+    return this.http.put<any>(baseURL + 'users/editUser/' + _id, user, httpOptions)
+      .pipe(catchError(this.ProcessHttpMsgService.handleError));
   }
-  deleteUser(username: string): Observable<any> {
-    return this.http.put<any>(baseURL + 'users/' + username, httpOptions)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  deleteUser(_id: string): Observable<any> {
+    return this.http.delete<any>(baseURL + 'users/deleteUser/' + _id, httpOptions)
+      .pipe(catchError(this.ProcessHttpMsgService.handleError));
   }
 
-  usernameChange(username:string): Observable<boolean> {
-    return this.http.get<boolean>(baseURL + `users/canChange?username=${username}`)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  usernameChange(username: string): Observable<CanResponse> {
+    return this.http.get<CanResponse>(baseURL + `users?username=${username}`)
+      .pipe(map((res) => {
+        return { success: res.success, status: 'This username used by anthor user' };
+      }));
   }
-  emailChange(email:string): Observable<boolean> {
-    return this.http.get<boolean>(baseURL + `users/canChange?email=${email}`)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  emailChange(email: string): Observable<CanResponse> {
+    return this.http.get<CanResponse>(baseURL + `users?email=${email}`)
+      .pipe(map((res) => {
+        return { success: res.success, status: 'This email used by anthor user' };
+      }));
   }
-  phoneChange(phone:string): Observable<boolean> {
-    return this.http.get<boolean>(baseURL + `users/canChange?phone=${phone}`)
-    .pipe(catchError(this.ProcessHttpMsgService.handleError));
+  phoneChange(phone: string): Observable<CanResponse> {
+    return this.http.get<CanResponse>(baseURL + `users?phone=${phone}`)
+      .pipe(map((res) => {
+        return { success: res.success, status: 'This phone number used by anthor user' };
+      }));
   }
 }

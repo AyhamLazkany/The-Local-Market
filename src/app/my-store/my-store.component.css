@@ -28,8 +28,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
- # Main
- --------------------------------------------------------------*/
+  # Main
+  --------------------------------------------------------------*/
 #main {
   padding: 20px 30px;
   transition: all 0.3s;
@@ -42,8 +42,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
- # Page Title
- --------------------------------------------------------------*/
+  # Page Title
+  --------------------------------------------------------------*/
 .pagetitle {
   margin-bottom: 10px;
 }
@@ -56,8 +56,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
- # Back to top button
- --------------------------------------------------------------*/
+  # Back to top button
+  --------------------------------------------------------------*/
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -89,8 +89,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
- # Override some default Bootstrap stylings
- --------------------------------------------------------------*/
+  # Override some default Bootstrap stylings
+  --------------------------------------------------------------*/
 /* Dropdown menus */
 .dropdown-menu {
   border-radius: 4px;
@@ -314,8 +314,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
+ # Profie Page
+ --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
 }
@@ -382,7 +382,28 @@ h6 {
   text-align: right;
   filter: alpha(opacity=0);
   opacity: 0;
-  outline: none;   
+  outline: none;
   cursor: inherit;
   display: block;
+}
+
+.top-selling {
+  font-size: 14px;
+}
+
+.top-selling .table thead {
+  background: #f6f6fe;
+}
+
+.top-selling .table thead th {
+  border: 0;
+}
+
+.top-selling .table tbody td {
+  vertical-align: middle;
+}
+
+.top-selling img {
+  border-radius: 5px;
+  max-width: 60px;
 }

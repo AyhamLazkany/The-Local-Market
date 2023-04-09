@@ -19,12 +19,11 @@ export class StoreService {
     return this.http.get<Store[]>(baseURL + 'stores')
       .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
-  getStoreNameByOwner(ownerId: string): Observable<string[]> {
+  getStoreByOwner(ownerId: string): Observable<Store[]> {
     return this.http.get<Store[]>(baseURL + `stores?ownerId=${ownerId}`)
-      .pipe(map(stores => stores.map(store => store.name)))
       .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
-  postStores(store: Store): Observable<Store> {
+  postStores(store: any): Observable<Store> {
     return this.http.post<Store>(baseURL + 'stores', store, httpOptions)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
@@ -34,12 +33,12 @@ export class StoreService {
     return this.http.get<Store>(baseURL + 'stores/' + id)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
-  putStore(id: string, store: Store): Observable<Store> {
+  putStore(id: string, store: any): Observable<Store> {
     return this.http.put<Store>(baseURL + 'stores/' + id, store, httpOptions)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
   deleteStore(id: string): Observable<Store> {
-    return this.http.put<Store>(baseURL + 'stores/' + id, httpOptions)
+    return this.http.delete<Store>(baseURL + 'stores/' + id, httpOptions)
     .pipe(catchError(this.ProcHttpMsgServ.handleError));
   }
 

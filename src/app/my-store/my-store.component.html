@@ -1,0 +1,218 @@
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{baseURL}}assets/img/market-1.jpg');">
+   <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Profile</h2>
+      <ol>
+         <li><a routerLink="/">Home</a></li>
+         <li>MyStore</li>
+      </ol>
+   </div>
+</div>
+<main id="main" class="main">
+
+   <section class="section profile">
+      <div class="row">
+         <div class="col-lg-4">
+
+            <div class="card">
+               <div class="card-body profile-card pt-4 d-flex flex-column">
+                  <div class="flex-column d-flex align-items-center">
+                     <img src="{{baseURL + myStore.img}}" alt="Profile" class="rounded-circle">
+                     <h2>{{myStore.name}}</h2>
+                     <div class="social-links mt-2">
+                        <a class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a class="instagram"><i class="bi bi-instagram"></i></a>
+                     </div>
+                  </div>
+                  <div class="profile-overview" id="profile-overview">
+                     <h5 class="card-title">Store Details</h5>
+                     <br><br>
+                     <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Store Type</div>
+                        <div class="col-lg-9 col-md-8">{{myStore.type}}</div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Categories</div>
+                        <div class="col-lg-9 col-md-8">{{myStore.categories}}</div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Phone Number</div>
+                        <div class="col-lg-9 col-md-8">{{myStore.phone}}</div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Description</div>
+                        <div class="col-lg-9 col-md-8">{{myStore.description}}</div>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+
+         </div>
+
+         <div class="col-lg-8">
+
+            <div class="card top-selling overflow-auto">
+
+               <div class="card-body pb-0">
+                  <h5 class="card-title">Prouducts</h5>
+
+                  <table class="table table-borderless">
+                     <thead>
+                        <tr class="text-warning fw-bold">
+                           <th scope="col">Image</th>
+                           <th scope="col">Title</th>
+                           <th scope="col">Category</th>
+                           <th scope="col">Price</th>
+                           <th scope="col">Quantity</th>
+                           <th scope="col"></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th scope="row"><img src="assets/img/product_single_01.jpg"></th>
+                           <td><b>Ut inventore ipsa vo</b></td>
+                           <td>Men's</td>
+                           <td>124</td>
+                           <td>5</td>
+                           <td>
+                              <span class="btn btn-danger btn-sm" title="Remove my store image">
+                                 <i class="bi bi-trash"></i>
+                              </span>
+                           </td>
+                        </tr>
+                        <tr *ngFor="let product of myProducts">
+                           <th scope="row"><img src="{{baseURL + product.img}}"></th>
+                           <td>{{product.title}}</td>
+                           <td>{{product.category}}</td>
+                           <td>{{product.price}}</td>
+                           <td>{{product.quantity}}</td>
+                           <td>
+                              <span (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm" title="Remove my store image">
+                                 <i class="bi bi-trash"></i>
+                              </span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="col-12 col-lg-9 m-auto">
+            <div class="card">
+               <div class="card-body">
+                  <h5 class="card-title">Add Prouduct</h5>
+                  <div class="profile-edit pt-3" id="my-store">
+
+                     <!-- Store Creat Form -->
+                     <form novalidate #CreatProductForm="ngForm" (ngSubmit)="CreatProduct()">
+                        <div class="row mb-3">
+                           <label for="storeImage" class="col-md-4 col-lg-3 col-form-label">Product Image</label>
+                           <div class="col-md-8 col-lg-9">
+                              <img [formGroup]="uploadForm" src="{{baseURL + createdProductImgSrc}}" class="img-fluid">
+                              <div class="pt-2">
+                                 <span class="btn btn-primary btn-sm btn-file">
+                                    <i class="bi bi-upload"></i>
+                                    <input type="file" accept="image/*" (change)="selectProductImg($event)">
+                                 </span>
+                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                 <a class="btn btn-danger btn-sm" title="Remove my product image"><i
+                                       class="bi bi-trash"></i></a>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <label for="title" class="col-md-4 col-lg-3 col-form-label">Title</label>
+                           <div class="col-md-8 col-lg-9">
+                              <input name="title" type="text" class="form-control" id="title"
+                                 [(ngModel)]="createdProduct.title" #title="ngModel" required>
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <label for="category" class="col-md-4 col-lg-3 col-form-label">Category</label>
+                           <div class="col-md-8 col-lg-9">
+                              <select id="category" class="form-select" #category
+                                 (change)="selectCategory(category.value)" required>
+                                 <option value=""></option>
+                                 <option *ngFor="let categor of myStore.categories">{{categor}}</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <label for="category" class="col-md-4 col-lg-3 col-form-label">Sizes</label>
+                           <div class="col-md-8 col-lg-9">
+                              <div class="input-group">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text btn btn-danger" (click)="DelSizeBox()"
+                                       id=""><b>ــ</b></span>
+                                 </div>
+                                 <input type="text" class="form-control mb-1" style="max-width: 75px;min-width: 75px;"
+                                    *ngFor="let size of createdProduct.sizes; let i=index" name="size"
+                                    [(ngModel)]="createdProduct.sizes[i]" #size="ngModel">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text  btn btn-warning" (click)="AddSizeBox()"
+                                       id=""><b>+</b></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="">
+
+                        </div>
+
+                        <div class="row mb-3">
+                           <label for="price" class="col-md-4 col-lg-3 col-form-label">Price</label>
+                           <div class="col-md-8 col-lg-9">
+                              <input name="price" type="text" class="form-control" id="price"
+                                 [(ngModel)]="createdProduct.price" #price="ngModel" required>
+                           </div>
+                        </div>
+                        <p>{{createdProduct | json}}</p>
+
+                        <div class="row mb-3">
+                           <label for="description" class="col-md-4 col-lg-3 col-form-label">Description*</label>
+                           <div class="col-md-8 col-lg-9">
+                              <textarea name="description" class="form-control" style="height: 100px" id="description"
+                                 [(ngModel)]="createdProduct.description" #description="ngModel" required></textarea>
+                           </div>
+                        </div>
+
+                        <div *ngIf="( uploadForm.value.avatar !== null ) && ( progress > 0 )"
+                           class="progress my-2 mx-5">
+                           <div class="progress-bar bg-warning" role="progressbar" attr.aria-valuenow="{{progress}}"
+                              aria-valuemin="0" aria-valuemax="100" attr.aria-valuenow="{{ progress }}"
+                              [ngStyle]="{ width: progress + '%' }"></div>
+                        </div>
+
+                        <div class="text-center">
+                           <mat-error *ngIf="errMssg">{{errMssg}}</mat-error>
+                           <button type="submit" class="btn btn-warning" [disabled]="CreatProductForm.form.invalid">Add
+                              Prouduct</button>
+                        </div>
+                     </form><!-- End Store Creat Form -->
+                     <br>
+                     <div *ngIf="success == true" class="alert alert-success alert-dismissible fade show" role="alert">
+                        Add Product Successfully !!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+
+         </div>
+
+      </div>
+   </section>
+
+</main><!-- End #main -->
