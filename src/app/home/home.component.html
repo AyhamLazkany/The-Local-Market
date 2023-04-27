@@ -10,7 +10,8 @@
             will be able to (See all the goods in your local market and Bay or Reserve a specific product)
             <br>and if you are a market owner you can add your store to our application
           </p>
-          <a data-bs-toggle="modal" class="btn-get-started" data-bs-target="#sign-dialog">Get Started</a>
+          <a *ngIf="isLogged == false" data-bs-toggle="modal" class="btn-get-started" data-bs-target="#sign-dialog">Get Started</a>
+          <a *ngIf="isLogged == true" data-bs-toggle="modal" class="btn-get-started" routerLink="/market">Get Started</a>
         </div>
       </div>
     </div>
@@ -18,9 +19,9 @@
 
   <div id="market-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-    <div style="background-image: url(assets/img/market-1.jpg)" class="carousel-item active"></div>
-    <div style="background-image: url(assets/img/market-2.jpg)" class="carousel-item"></div>
-    <div style="background-image: url(assets/img/market-3.jpg)" class="carousel-item"></div>
+    <div style="background-image: url({{baseURL}}assets/img/market-1.jpg)" class="carousel-item active"></div>
+    <div style="background-image: url({{baseURL}}assets/img/market-2.jpg)" class="carousel-item"></div>
+    <div style="background-image: url({{baseURL}}assets/img/market-3.jpg)" class="carousel-item"></div>
 
     <a class="carousel-control-prev" href="#market-carousel" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
@@ -42,23 +43,22 @@
 
       <div class="section-header">
         <h2>Markets</h2>
-        <p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore quam porro nihil id ratione ea sunt quis dolorem
-          dolore earum</p>
+        <p>We have envolved in many markets in the country and We aspire to reach every possible market and every possible user</p>
       </div>
 
       <div class="row gy-4">
 
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
           <div class="card-item">
             <div class="row">
               <div class="col-xl-5">
-                <div class="card-bg" style="background-image: url(assets/img/constructions-1.jpg);"></div>
+                <div class="card-bg" style="background-image: url({{baseURL}}assets/img/market-1.jpg);"></div>
               </div>
               <div class="col-xl-7 d-flex align-items-center">
                 <div class="card-body">
-                  <h4 class="card-title">Eligendi omnis sunt veritatis.</h4>
-                  <p>Fuga in dolorum et iste et culpa. Commodi possimus nesciunt modi voluptatem placeat deleniti
-                    adipisci. Cum delectus doloribus non veritatis. Officia temporibus illo magnam. Dolor eos et.</p>
+                  <h4 class="card-title">Ibn Rushd Market</h4>
+                  <p>It is a local market that often specializes in clothing and shoes stores that suit 
+                    all family members and are the most famous and well-known in the city.</p>
                 </div>
               </div>
             </div>
@@ -69,14 +69,13 @@
           <div class="card-item">
             <div class="row">
               <div class="col-xl-5">
-                <div class="card-bg" style="background-image: url(assets/img/constructions-2.jpg);"></div>
+                <div class="card-bg" style="background-image: url({{baseURL}}assets/img/market-2.jpg);"></div>
               </div>
               <div class="col-xl-7 d-flex align-items-center">
                 <div class="card-body">
-                  <h4 class="card-title">Possimus ut sed velit assumenda</h4>
-                  <p>Sunt deserunt maiores voluptatem autem est rerum perferendis rerum blanditiis. Est laboriosam qui
-                    iste numquam laboriosam voluptatem architecto. Est laudantium sunt at quas aut hic. Eum dignissimos.
-                  </p>
+                  <h4 class="card-title">Orontes Square Market</h4>
+                  <p>It is a very famous market in the city, in which there are all kinds of possible stores that meet 
+                    the needs of the city, from electronic parts to home appliances to the clothing market.</p>
                 </div>
               </div>
             </div>
@@ -87,32 +86,13 @@
           <div class="card-item">
             <div class="row">
               <div class="col-xl-5">
-                <div class="card-bg" style="background-image: url(assets/img/constructions-3.jpg);"></div>
+                <div class="card-bg" style="background-image: url({{baseURL}}assets/img/market-3.jpg);"></div>
               </div>
               <div class="col-xl-7 d-flex align-items-center">
                 <div class="card-body">
-                  <h4 class="card-title">Error beatae dolor inventore aut</h4>
-                  <p>Dicta porro nobis. Velit cum in. Nesciunt dignissimos enim molestiae facilis numquam quae quaerat
-                    ipsam omnis. Neque debitis ipsum at architecto officia laboriosam odit. Ut sunt temporibus nulla
-                    culpa.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- End Card Item -->
-
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-          <div class="card-item">
-            <div class="row">
-              <div class="col-xl-5">
-                <div class="card-bg" style="background-image: url(assets/img/constructions-4.jpg);"></div>
-              </div>
-              <div class="col-xl-7 d-flex align-items-center">
-                <div class="card-body">
-                  <h4 class="card-title">Expedita voluptas ut ut nesciunt</h4>
-                  <p>Aut est quidem doloremque voluptatem magnam quis excepturi vero quia. Eum eos doloremque architecto
-                    illo at beatae dolore. Fugiat suscipit et sint ratione dolores. Aut aliquid ea dolores libero nobis.
-                  </p>
+                  <h4 class="card-title">El Alamein market</h4>
+                  <p>It is a market similar to the Al-Asi Square market and is considered an extension of it, 
+                    but it contains civil services in addition to it and many other things</p>
                 </div>
               </div>
             </div>
@@ -130,8 +110,8 @@
 
       <div class="section-header">
         <h2>Services</h2>
-        <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti fignissimos eos
-          quam</p>
+        <p>Our website offers many services that facilitate their daily lives for users, 
+          in addition to the benefit that it brings to our store owners</p>
       </div>
 
       <div class="row gy-4">
@@ -161,7 +141,7 @@
             <div class="icon">
               <i class="fa-solid fa-compass-drafting"></i>
             </div>
-            <h3>Product Management</h3>
+            <h3>Store Mangment</h3>
             <a routerLink="/services" class="readmore stretched-link"></a>
           </div>
         </div><!-- End Service Item -->
@@ -177,19 +157,6 @@
         </div><!-- End Service Item -->
       </div>
 
-      <div class="row gy-4 justify-content-center mt-1">
-        <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fa-solid fa-helmet-safety"></i>
-            </div>
-            <h3>Delivery of orders</h3>
-            <a routerLink="/services" class="readmore stretched-link"></a>
-          </div>
-        </div><!-- End Service Item -->
-
-      </div>
-
     </div>
   </section><!-- End Services Section -->
 
@@ -199,185 +166,23 @@
 
       <div class="section-header">
         <h2>Our Stores</h2>
-        <p>Consequatur libero assumenda est voluptatem est quidem illum et officia imilique qui vel architecto accusamus
-          fugit aut qui distinctio</p>
+        <p>Here we have some pictures of our stores that some users have created</p>
       </div>
 
       <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
         data-portfolio-sort="original-order">
 
-        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200" *ngFor="let store of stores">
 
           <div class="col-6 col-lg-3 portfolio-item filter-remodeling">
             <div class="portfolio-content h-100">
-              <img src="assets/img/projects/remodeling-1.jpg" class="img-fluid" alt="">
+              <img src="{{baseURL + store.img}}" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Remodeling 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/remodeling-1.jpg" title="Remodeling 1"
+                <h4>{{store.name}}</h4>
+                <p>{{store.description}}</p>
+                <a href="{{baseURL + store.img}}" title="Remodeling 1"
                   data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
                     class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-construction">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/construction-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Construction 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/construction-1.jpg" title="Construction 1"
-                  data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
-                    class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-repairs">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/repairs-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Repairs 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/repairs-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-repairs"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-design">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/design-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Design 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/design-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-book"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-remodeling">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/remodeling-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Remodeling 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/remodeling-2.jpg" title="Remodeling 2"
-                  data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
-                    class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-construction">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/construction-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Construction 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/construction-2.jpg" title="Construction 2"
-                  data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
-                    class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-repairs">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/repairs-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Repairs 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/repairs-2.jpg" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-design">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/design-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Design 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/design-2.jpg" title="Repairs 2" data-gallery="portfolio-gallery-book"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-remodeling">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/remodeling-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Remodeling 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/remodeling-3.jpg" title="Remodeling 3"
-                  data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
-                    class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-construction">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/construction-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Construction 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/construction-3.jpg" title="Construction 3"
-                  data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
-                    class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-repairs">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/repairs-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Repairs 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/repairs-3.jpg" title="Repairs 2" data-gallery="portfolio-gallery-repairs"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Projects Item -->
-
-          <div class="col-6 col-lg-3 portfolio-item filter-design">
-            <div class="portfolio-content h-100">
-              <img src="assets/img/projects/design-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Design 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/projects/design-3.jpg" title="Repairs 3" data-gallery="portfolio-gallery-book"
-                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="project-details.html" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
               </div>
             </div>
           </div><!-- End Projects Item -->

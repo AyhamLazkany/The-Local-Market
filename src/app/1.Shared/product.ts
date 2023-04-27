@@ -11,7 +11,7 @@ export class Product {
    quantity!: number;
    sizes!: string[];
    price!: number;
-   comments!: Comment[];
+   rats!: number[];
    createdAt!: string;
    updatedAt!: string;
 } 

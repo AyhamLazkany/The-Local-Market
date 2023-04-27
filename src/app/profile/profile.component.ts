@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   uploadErrMssg: string;
 
   myStore: Store;
-  createdStore: createdStore = { img: 'assets/img/stores/constructions-3.jpg', name: '', type: '', phone: '', fbsrc: '', categories: [], description: '...' };
+  createdStore: createdStore = { img: 'assets/img/stores/store-logo.png', name: '', type: '', phone: '', fbsrc: '', categories: [], description: '...' };
   storeSrcImg!: string;
   cat!: string;
   ShowFormCS: boolean = false;

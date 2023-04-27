@@ -21,7 +21,7 @@
 
             <div class="store-img position-relative overflow-hidden"
               style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;">
-              <img src="{{baseURL + store.img}}" class="img-fluid" alt="">
+              <img src="{{baseURL + store.img}}" class="img-fluid" style="height: 350px;width: 100%;object-fit: cover;" alt="">
               <span class="store-category">{{store.type}}</span>
             </div>
 
@@ -35,7 +35,7 @@
                 </div>
               </div>
 
-              <p>{{store.description}}</p>
+              <p style="height: 30px;">{{store.description}}</p>
 
               <hr>
 
@@ -55,9 +55,7 @@
 
       <div class="store-pagination">
         <ul class="justify-content-center">
-          <li><a href="#">1</a></li>
-          <li class="active"><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
+          <li class="active"><a>1</a></li>
         </ul>
       </div><!-- End store pagination -->
 

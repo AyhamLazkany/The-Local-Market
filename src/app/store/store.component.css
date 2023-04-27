@@ -24,9 +24,8 @@ body{
 
 .wishlist{
 
-	height: 25px;
-	width: 25px;
-	background-color: #eee;
+	height: 35px;
+	width: 35px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

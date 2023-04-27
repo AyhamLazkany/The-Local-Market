@@ -17,6 +17,7 @@ export class StoreComponent implements OnInit {
   storeId!: string;
   storeErrMess!: string;
   productErrMess!: string;
+  favorite: boolean = true;
 
   constructor(private storeSrv: StoreService,
     private productSrv: ProductService,
@@ -29,6 +30,17 @@ export class StoreComponent implements OnInit {
       .subscribe((store) => {this.store = store; this.store.createdAt = this.store.createdAt.slice(0,10)}, (errMess) => this.storeErrMess = errMess);
     this.productSrv.getProducts(this.storeId)
       .subscribe((products) => this.products = products, (errMess) => this.productErrMess = errMess);
+  }
+  
+  categoryFound(category: string): boolean {
+    if (this.products.find((prod) => prod.category === category) == undefined) 
+      return false;
+    else 
+      return true;
+  }
+
+  productsFound(category: string): Product[] {
+      return this.products.filter((prod) => prod.category === category);
   }
 
 }

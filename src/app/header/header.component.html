@@ -33,7 +33,7 @@
          </a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-            <li *ngIf="seller"><a class="dropdown-item" routerLink="/myStore">My Store</a></li>
+            <li *ngIf="seller == true"><a class="dropdown-item" routerLink="/myStore">My Store</a></li>
             <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
          </ul>
       </span>

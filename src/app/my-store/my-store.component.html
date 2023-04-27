@@ -1,7 +1,7 @@
 <div class="breadcrumbs d-flex align-items-center" style="background-image: url('{{baseURL}}assets/img/market-1.jpg');">
    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-      <h2>Profile</h2>
+      <h2>MyStore</h2>
       <ol>
          <li><a routerLink="/">Home</a></li>
          <li>MyStore</li>
@@ -68,28 +68,18 @@
                            <th scope="col">Category</th>
                            <th scope="col">Price</th>
                            <th scope="col">Quantity</th>
+                           <th scope="col">Sizes</th>
                            <th scope="col"></th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
-                           <th scope="row"><img src="assets/img/product_single_01.jpg"></th>
-                           <td><b>Ut inventore ipsa vo</b></td>
-                           <td>Men's</td>
-                           <td>124</td>
-                           <td>5</td>
-                           <td>
-                              <span class="btn btn-danger btn-sm" title="Remove my store image">
-                                 <i class="bi bi-trash"></i>
-                              </span>
-                           </td>
-                        </tr>
                         <tr *ngFor="let product of myProducts">
                            <th scope="row"><img src="{{baseURL + product.img}}"></th>
                            <td>{{product.title}}</td>
                            <td>{{product.category}}</td>
                            <td>{{product.price}}</td>
                            <td>{{product.quantity}}</td>
+                           <td>{{product.sizes}}</td>
                            <td>
                               <span (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm" title="Remove my store image">
                                  <i class="bi bi-trash"></i>
@@ -177,7 +167,6 @@
                                  [(ngModel)]="createdProduct.price" #price="ngModel" required>
                            </div>
                         </div>
-                        <p>{{createdProduct | json}}</p>
 
                         <div class="row mb-3">
                            <label for="description" class="col-md-4 col-lg-3 col-form-label">Description*</label>
