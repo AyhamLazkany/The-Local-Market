@@ -9,22 +9,27 @@ import { ProcessHttpMsgService } from './process-http-msg.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BayRecService {
+export class ShopCartService {
 
   constructor(public auth: AuthService, private http: HttpClient, private ProcHttpMsgServ: ProcessHttpMsgService) { }
 
-  getBayRecs(): Observable<any> {
-    return this.http.get<any>(baseURL + 'bayRecs')
+  getCart(): Observable<any> {
+    return this.http.get<any>(baseURL + 'cart')
       .pipe(catchError(error => this.ProcHttpMsgServ.handleError(error)));
   }
 
-  postBayRec(id: string) {
-    return this.http.post(baseURL + 'bayRecs/' + id, {})
+  postCart(id: string, size: string): Observable<any> {
+    return this.http.post<any>(baseURL + 'cart/' + id, { size: size })
     .pipe(catchError(error => this.ProcHttpMsgServ.handleError(error)));
   }
 
-  deleteBayRec(id: string) {
-    return this.http.delete(baseURL + 'bayRecs/' + id)
+  deleteFromCart(id: string): Observable<any> {
+    return this.http.delete<any>(baseURL + 'cart/' + id)
+    .pipe(catchError(error => this.ProcHttpMsgServ.handleError(error)));
+  }
+
+  deleteCart(): Observable<any> {
+    return this.http.delete<any>(baseURL + 'cart')
     .pipe(catchError(error => this.ProcHttpMsgServ.handleError(error)));
   }
 }

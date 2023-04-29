@@ -10,11 +10,12 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
          <ul>
-            <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/services">Services</a></li>
-            <li *ngIf="isLogged"><a routerLink="/market">Market</a></li>
-            <li><a routerLink="/contact">Contact</a></li>
+            <li><a routerLink="/home"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+            <li><a routerLink="/about"><i class="fa fa-info-circle"></i>&nbsp;About</a></li>
+            <li><a routerLink="/services"><i class="fa fa-bandcamp"></i>&nbsp;Services</a></li>
+            <li *ngIf="isLogged"><a routerLink="/market"><i class="fa fa-list"></i>&nbsp;Market</a></li>
+            <li><a routerLink="/contact"><i class="fa fa-address-card"></i>&nbsp;Contact</a></li>
+            <li *ngIf="isLogged"><a routerLink="/shoppingcart"><i class="fa fa-cart-arrow-down"></i>&nbsp;Cart</a></li>
             <li class="d-none d-sm-block"></li>
             <li *ngIf="isLogged" class="d-none d-sm-block"></li>
             <li *ngIf="isLogged" class="d-none d-sm-block"></li>
@@ -32,9 +33,10 @@
                <span class="d-inline">&nbsp;@{{username}}</span>
          </a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-            <li *ngIf="seller == true"><a class="dropdown-item" routerLink="/myStore">My Store</a></li>
-            <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+            <li><a class="dropdown-item" routerLink="/profile"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/favorites"><i class="fa fa-heart"></i>&nbsp;Favorites</a></li>
+            <li *ngIf="seller == true"><a class="dropdown-item" routerLink="/myStore"><i class="fa fa-store-alt"></i>&nbsp;My Store</a></li>
+            <li><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>&nbsp;Log Out</a></li>
          </ul>
       </span>
    </div>

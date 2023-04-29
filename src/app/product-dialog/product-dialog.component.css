@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+.modal-content {
+	border-radius: 30px;
+	width: 100%;
+	height: 600px;
+	position: absolute;
+	text-align: center;
+	font-family: 'Montserrat', monospace;
+	font-weight: bold;
+	margin: auto;
+	background: #111112fa;
+	box-shadow: 0 2px 4px 8px rgba(0, 0, 0, .24), 0 4px 8px 12px rgba(0, 0, 0, .19);
+}
+
+@media (max-width: 1000px) {
+
+	.modal-content {
+		margin: 20% 2%;
+		width: 96%;
+	}
+
+}
+
+.card {
+	border-radius: 30px;
+	height: 100%;
+	width: 100%;
+}
+
+.image-container {
+	position: relative;
+}
+
+.thumbnail-image {
+	border-radius: 30px !important;
+}
+
+.wishlist {
+	margin: 20px;
+	height: 35px;
+	width: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.wishlist:hover {
+	cursor: pointer;
+}
+
+.first {
+
+	position: absolute;
+	width: 100%;
+	padding: 9px;
+}
+
+
+.dress-name {
+	font-size: 17px;
+	font-weight: bold;
+	width: 75%;
+}
+
+
+.new-price {
+	font-size: 17px;
+	font-weight: bold;
+	color: red;
+
+}
+
+.btn {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	padding: 3px;
+}
+
+.btn-get-started {
+	font-family: var(--font-primary);
+	font-weight: 500;
+	font-size: 16px;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 12px 40px;
+	border-radius: 50px;
+	border: none;
+	transition: 0.5s;
+	margin: 10px;
+	color: #fff;
+	background: #fff45e;
+}
+
+.btn-get-started:hover {
+	background: var(--color-primary);
+}
+
+.btn-close {
+	position: absolute;
+	right: 5%;
+	top: 5%;
+	z-index: 2;
+}
+
+.blue {
+	background-color: #fff;
+	border: 2px solid #40C4FF;
+}
+
+.blue:hover {
+	border: 3px solid #40C4FF;
+}
+
+.blue:focus {
+	background-color: #40C4FF;
+}
+
+.darkblue {
+	background-color: #fff;
+	border: 2px solid #01579B;
+}
+
+.darkblue:hover {
+	border: 3px solid #01579B;
+}
+
+.darkblue:focus {
+	background-color: #01579B;
+}
+
+.yellow {
+	background-color: #fff;
+	border: 2px solid #FFCA28;
+}
+
+.yellow:hover {
+	border-radius: 3px solid #FFCA28;
+}
+
+.yellow:focus {
+	background-color: #FFCA28;
+}
+
+
+.selector-item_radio{
+	appearance:none;
+	display:none;
+}
+
+.item-size {
+	width: 30px;
+	height: 35px;
+	border-radius: 50%;
+	border-color: var(--color-primary);
+	background: #fff;
+	font-size: 14px;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.item-size:hover {
+	background-color: var(--color-primary) !important;
+	color: #fff !important;
+}
+
+.selector-item_radio:checked + .item-size {
+	background-color: var(--color-primary) !important;
+	color: #fff !important;
+}
+
+.rating-star {
+	color: #FFCA28 !important;
+}

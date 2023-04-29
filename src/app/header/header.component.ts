@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.isLogged) {
       this.username = this.authService.getUsername();
       this.img = this.authService.getImg();
-      this.seller = this.authService.getSeller();
+      this.authService.isSeller(this.username).subscribe((seller) => this.seller = seller);
     }
   }
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.isLogged) {
       this.username = this.authService.getUsername();
       this.img = this.authService.getImg();
-      this.seller = this.authService.getSeller();
+      this.authService.isSeller(this.username).subscribe((seller) => this.seller = seller);
       this.login.emit();
     }
   }

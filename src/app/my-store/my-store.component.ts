@@ -10,7 +10,7 @@ import { FileUploadService } from '../2.Services/file-upload.service';
 
 interface createdProduct {
   store: string, storeId: string, img: string, category: string, title: string,
-  description: string, quantity: number, sizes: string[], price: number
+  description: string, color: string, sizes: string[], price: number
 };
 
 @Component({
@@ -25,7 +25,7 @@ export class MyStoreComponent implements OnInit {
   myProducts: Product[];
   createdProduct: createdProduct = {
     store: '', storeId: '', img: 'assets/img/products/product_logo.png', category: '', title: '',
-    description: '', quantity: 0, sizes: [''], price: 0
+    description: '', color: '', sizes: [''], price: 0
   };
   createdProductImgSrc: string = 'assets/img/products/product_logo.png';
   progress: number;
@@ -114,7 +114,6 @@ export class MyStoreComponent implements OnInit {
   CreatProduct() {
     this.createdProduct.store = this.myStore.name;
     this.createdProduct.storeId = this.myStore._id;
-    this.createdProduct.quantity = this.createdProduct.sizes.length;
     this.prodSrv.postProducts(this.createdProduct)
       .subscribe((product) => {
         this.myProducts.push(product);
@@ -125,7 +124,7 @@ export class MyStoreComponent implements OnInit {
   deleteProduct(id: string) {
     this.prodSrv.deleteProduct(id)
       .subscribe(() => {
-        const index = this.myProducts.findIndex((pro) => pro._id = id);
+        const index = this.myProducts.findIndex((pro) => pro._id == id);
         this.myProducts.slice(index, 1);
       }, errMssg => this.errMssg = errMssg)
   }

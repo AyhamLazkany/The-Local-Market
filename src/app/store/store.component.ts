@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Store } from '../1.Shared/store';
 import { StoreService } from '../2.Services/store.service';
 import { Product } from '../1.Shared/product';
 import { ProductService } from '../2.Services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 
 @Component({
   selector: 'app-store',
@@ -12,12 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StoreComponent implements OnInit {
 
-  store!: Store;
-  products!: Product[];
-  storeId!: string;
-  storeErrMess!: string;
-  productErrMess!: string;
-  favorite: boolean = true;
+  store: Store = { _id: '',categories: [],createdAt: '',description: '',img: '',owner: '',ownerId: '',updatedAt: '',fbsrc: '',name: '',phone: '',type: '' };
+  products: Product[] = []
+  product: Product = { _id: '',category: '',color: '',createdAt: '',description: '',img: '',price: 0,rats: [],sizes: [],store: '',storeId: '',title: '',updatedAt: '' }
+  storeId: string = ''
+  storeErrMess: string = '';
+  productErrMess: string = '';
+  @ViewChild(ProductDialogComponent, {static : true}) prodDia : ProductDialogComponent;
 
   constructor(private storeSrv: StoreService,
     private productSrv: ProductService,
@@ -41,6 +43,11 @@ export class StoreComponent implements OnInit {
 
   productsFound(category: string): Product[] {
       return this.products.filter((prod) => prod.category === category);
+  }
+
+  selectProduct(prod: Product) {
+    this.product = prod;
+    this.prodDia.isFav(prod._id);
   }
 
 }

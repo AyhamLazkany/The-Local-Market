@@ -1,5 +1,3 @@
-import { Comment } from "./comment"
-
 export class Product {
    _id!: string;
    store!: string;
@@ -8,7 +6,7 @@ export class Product {
    category!: string;
    title!: string;
    description!: string;
-   quantity!: number;
+   color!: string;
    sizes!: string[];
    price!: number;
    rats!: number[];

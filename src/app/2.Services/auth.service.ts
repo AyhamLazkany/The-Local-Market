@@ -18,7 +18,6 @@ interface credentials {
   authToken: string | any;
   username: string | any;
   img: string | any;
-  seller: boolean;
 }
 
 interface JWTResponse {
@@ -39,7 +38,6 @@ export class AuthService {
   TokenKey: string = "JWT";
   Credentials: credentials | any = localStorage.getItem(this.TokenKey);
   isAuthenticated: boolean = false;
-  seller: boolean = false;
   authToken: string | any = undefined;
   username: string | any = undefined;
   img: string | any = undefined;
@@ -56,10 +54,6 @@ export class AuthService {
     return this.img;
   }
 
-  getSeller(): boolean {
-    return this.seller;
-  }
-
   getToken(): string {
     return this.authToken;
   }
@@ -69,7 +63,6 @@ export class AuthService {
     this.username = credentials.username;
     this.authToken = credentials.authToken;
     this.img = credentials.img;
-    this.seller = credentials.seller;
   }
 
   destroyUserCredentials() {
@@ -123,7 +116,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(baseURL + 'users/login',
       { 'username': user.username, 'password': user.password })
       .pipe(map(res => {
-        this.storeUserCredentials({ username: res.user.username, authToken: res.token, img: res.user.img, seller: res.user.seller });
+        this.storeUserCredentials({ username: res.user.username, authToken: res.token, img: res.user.img });
         return { success: res.success, status: res.status, user: res.user };
       }), catchError(error => this.ProcessHttpMsgService.handleError(error)));
   }
@@ -134,6 +127,11 @@ export class AuthService {
 
   isLoggedIn(): Boolean {
     return this.isAuthenticated;
+  }
+
+  isSeller(username: string): Observable<boolean> {
+    return this.http.get<any>(baseURL + 'users/isSeller/' + username)
+      .pipe(catchError(this.ProcessHttpMsgService.handleError));
   }
 
   getUser(username: string): Observable<any> {

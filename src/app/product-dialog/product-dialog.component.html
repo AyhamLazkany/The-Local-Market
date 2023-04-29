@@ -1,0 +1,61 @@
+<div class="modal-dialog">
+   <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #btnClose></button>
+      <div class="card">
+
+         <div class="image-container">
+
+            <div class="first">
+
+               <div class="d-flex justify-content-between align-items-center">
+                  <span (click)="addFavorite()" *ngIf="!favorite" class="wishlist bg-warning"><i
+                        class="fa fa-heart-o text-danger"></i></span>
+                  <span (click)="removeFavorite()" *ngIf="favorite" class="wishlist bg-warning"><i
+                        class="fa fa-heart text-danger"></i></span>
+               </div>
+            </div>
+
+            <img src="{{baseURL + product.img}}" class="img-fluid rounded thumbnail-image"
+               style="width: 100%;height: 350px;object-fit: cover;">
+
+         </div>
+
+         <div class="product-detail-container p-2">
+
+            <div class="d-flex justify-content-between align-items-center" style="min-height: 80px;">
+               <h5 class="dress-name">{{product.title}}</h5>
+               <div class="d-flex flex-column mb-2">
+                  <span style="min-width: 90px;" class="new-price text-warning">{{product.price}} S.P</span>
+               </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center p-2">
+               <div class="color-select d-flex">
+                  <h5><span
+                        class="badge rounded-pill bg-white text-danger border border-danger">{{product.color}}</span>
+                  </h5>
+               </div>
+               <div class="d-flex" style="min-width: 90px;">
+                  <div *ngFor="let size of product.sizes; let i = index">
+                     <input type="radio" id="radio{{i}}" name="selector" value="{{size}}"
+                        class="selector-item_radio" (change)="changeSize($event)">
+                     <label for="radio{{i}}"
+                        class="item-size me-1 mb-1 btn bg-white text-warning"><b>{{size}}</b></label>
+                  </div>
+               </div>
+            </div>
+
+
+            <div class="d-flex justify-content-between align-items-center p-2">
+               <div class="d-flex">
+                  <i class="fa fa-star rating-star"></i>
+                  <span class="rating-number">4.8</span>
+               </div>
+            </div>
+            <mat-error *ngIf="cartErrMsg" class="text-danger">{{cartErrMsg}}</mat-error>
+            <br *ngIf="cartErrMsg">
+            <button class="btn-get-started" (click)="addToCart()">Add To Cart</button>
+         </div>
+      </div>
+   </div>
+</div>

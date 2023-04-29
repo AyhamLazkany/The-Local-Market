@@ -1,0 +1,124 @@
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/market-1.jpg');">
+   <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Shopping Cart</h2>
+      <ol>
+         <li><a routerLink="/">Home</a></li>
+         <li>Shopping Cart</li>
+      </ol>
+
+   </div>
+</div>
+<main id="main">
+   <section class="store">
+      <div class="container py-5 h-100">
+         <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+               <div class="card">
+                  <div class="card-body p-4">
+
+                     <div class="row">
+
+                        <div class="col-lg-7">
+                           <h5 class="mb-3"><a routerLink="/market" class="text-body"><i
+                                    class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                           <hr>
+
+                           <div class="card mb-3">
+                              <div class="card-body" *ngFor="let cartProd of cartProds">
+                                 <div class="d-flex justify-content-between">
+                                    <div class="d-flex flex-row align-items-center">
+                                       <div>
+                                          <img
+                                             src="{{baseURL + cartProd.product.img}}"
+                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                       </div>
+                                       <div class="ms-3">
+                                          <h5>{{cartProd.product.title}}</h5>
+                                          <p class="small mb-0">{{cartProd.product.description}}</p>
+                                       </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                       <div style="width: 100px;">
+                                          <h5 class="fw-normal mb-2">Size</h5>
+                                          <h6 class="fw-normal mb-0">{{cartProd.size}}</h6>
+                                       </div>
+                                       <div style="width: 150px;">
+                                          <h5 class="fw-normal mb-2">Price</h5>
+                                          <h6 class="mb-0"><b>{{cartProd.product.price}}&nbsp;S.P</b></h6>
+                                       </div>
+                                       <a (click)="removePro(cartProd.product._id)" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                        </div>
+                        <div class="col-lg-5">
+
+                           <div class="card bg-warning text-white rounded-3">
+                              <div class="card-body">
+                                 <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="mb-0">Card details</h5>
+                                 </div>
+
+                                 <form class="mt-4">
+                                    <div class="form-outline form-white mb-4">
+                                       <input type="text" id="typeName" class="form-control form-control-lg" siez="25"
+                                          placeholder="EX: Ayham Adel Lazkany" />
+                                       <label class="form-label" for="typeName">Triple recipient name</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                       <input type="text" id="typeText" class="form-control form-control-lg" siez="12"
+                                          placeholder="EX: 0987 654 321" minlength="19" maxlength="19" />
+                                       <label class="form-label" for="typeText">Contact Number</label>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                       <div class="col-md-6">
+                                          <div class="form-outline form-white">
+                                             <input type="text" id="typeExp" class="form-control form-control-lg"
+                                                placeholder="EX: Hama" size="10" id="exp" minlength="10" maxlength="10" />
+                                             <label class="form-label" for="typeExp">City</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                          <div class="form-outline form-white">
+                                             <input type="text" id="typeExp" class="form-control form-control-lg"
+                                                placeholder="" size="10" id="exp" minlength="15" maxlength="15" />
+                                             <label class="form-label" for="typeExp">Location</label>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                 </form>
+
+                                 <hr class="my-4">
+
+                                 <div class="d-flex justify-content-between">
+                                    <h5 class="mb-2">Total</h5>
+                                    <h5 class="mb-2">{{total}}</h5>
+                                 </div>
+
+                                 <button type="button" class="btn btn-danger btn-block btn-lg" (click)="clearCart()">
+                                    <div class="d-flex justify-content-between">
+                                       <span>{{total}}&nbsp;S.P&nbsp;&nbsp;</span>
+                                       <span>Send<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                    </div>
+                                 </button>
+
+                              </div>
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</main>

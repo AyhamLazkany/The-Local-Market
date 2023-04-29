@@ -1,0 +1,409 @@
+:root {
+   scroll-behavior: smooth;
+}
+
+body {
+   font-family: "Open Sans", sans-serif;
+   background: #f6f9ff;
+   color: #444444;
+}
+
+a {
+   color: #cdd1f7;
+   text-decoration: none;
+}
+
+a:hover {
+   color: rgba(254, 185, 0, 0.8);
+   text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: "Nunito", sans-serif;
+}
+
+/*--------------------------------------------------------------
+   # Main
+   --------------------------------------------------------------*/
+#main {
+   padding: 20px 30px;
+   transition: all 0.3s;
+}
+
+@media (max-width: 1199px) {
+   #main {
+      padding: 20px;
+   }
+}
+
+/*--------------------------------------------------------------
+   # Page Title
+   --------------------------------------------------------------*/
+.pagetitle {
+   margin-bottom: 10px;
+}
+
+.pagetitle h1 {
+   font-size: 24px;
+   margin-bottom: 0;
+   font-weight: 600;
+   color: rgb(159, 116, 0);
+}
+
+/*--------------------------------------------------------------
+   # Back to top button
+   --------------------------------------------------------------*/
+.back-to-top {
+   position: fixed;
+   visibility: hidden;
+   opacity: 0;
+   right: 15px;
+   bottom: 15px;
+   z-index: 99999;
+   background: rgba(254, 185, 0, 0.8);
+   width: 40px;
+   height: 40px;
+   border-radius: 4px;
+   transition: all 0.4s;
+}
+
+.back-to-top i {
+   font-size: 24px;
+   color: #fff;
+   line-height: 0;
+}
+
+.back-to-top:hover {
+   background: rgb(254, 225, 145);
+   color: #fff;
+}
+
+.back-to-top.active {
+   visibility: visible;
+   opacity: 1;
+}
+
+/*--------------------------------------------------------------
+   # Override some default Bootstrap stylings
+   --------------------------------------------------------------*/
+/* Dropdown menus */
+.dropdown-menu {
+   border-radius: 4px;
+   padding: 10px 0;
+   animation-name: dropdown-animate;
+   animation-duration: 0.2s;
+   animation-fill-mode: both;
+   border: 0;
+   box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+}
+
+.dropdown-menu .dropdown-header,
+.dropdown-menu .dropdown-footer {
+   text-align: center;
+   font-size: 15px;
+   padding: 10px 25px;
+}
+
+.dropdown-menu .dropdown-footer a {
+   color: #444444;
+   text-decoration: underline;
+}
+
+.dropdown-menu .dropdown-footer a:hover {
+   text-decoration: none;
+}
+
+.dropdown-menu .dropdown-divider {
+   color: rgb(254, 225, 145);
+   margin: 0;
+}
+
+.dropdown-menu .dropdown-item {
+   font-size: 14px;
+   padding: 10px 15px;
+   transition: 0.3s;
+}
+
+.dropdown-menu .dropdown-item i {
+   margin-right: 10px;
+   font-size: 18px;
+   line-height: 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+   background-color: #f6f9ff;
+}
+
+@media (min-width: 768px) {
+   .dropdown-menu-arrow::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      background: #fff;
+      position: absolute;
+      top: -7px;
+      right: 20px;
+      transform: rotate(45deg);
+      border-top: 1px solid #eaedf1;
+      border-left: 1px solid #eaedf1;
+   }
+}
+
+@keyframes dropdown-animate {
+   0% {
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 1;
+   }
+
+   0% {
+      opacity: 0;
+   }
+}
+
+/* Light Backgrounds */
+.bg-primary-light {
+   background-color: #cfe2ff;
+   border-color: #cfe2ff;
+}
+
+.bg-secondary-light {
+   background-color: #e2e3e5;
+   border-color: #e2e3e5;
+}
+
+.bg-success-light {
+   background-color: #d1e7dd;
+   border-color: #d1e7dd;
+}
+
+.bg-danger-light {
+   background-color: #f8d7da;
+   border-color: #f8d7da;
+}
+
+.bg-warning-light {
+   background-color: #fff3cd;
+   border-color: #fff3cd;
+}
+
+.bg-info-light {
+   background-color: #cff4fc;
+   border-color: #cff4fc;
+}
+
+.bg-dark-light {
+   background-color: #d3d3d4;
+   border-color: #d3d3d4;
+}
+
+/* Card */
+.card {
+   margin-bottom: 30px;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-header,
+.card-footer {
+   border-color: #ebeef4;
+   background-color: #fff;
+   color: rgb(254, 225, 145);
+   padding: 15px;
+}
+
+.card-title {
+   padding: 20px 0 15px 0;
+   font-size: 18px;
+   font-weight: 500;
+   color: rgb(159, 116, 0);
+   font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+   color: rgb(254, 225, 145);
+   font-size: 14px;
+   font-weight: 400;
+}
+
+.card-body {
+   padding: 0 20px 20px 20px;
+}
+
+.card-img-overlay {
+   background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Alerts */
+.alert-heading {
+   font-weight: 500;
+   font-family: "Poppins", sans-serif;
+   font-size: 20px;
+}
+
+/* Close Button */
+.btn-close {
+   background-size: 25%;
+}
+
+.btn-close:focus {
+   outline: 0;
+   box-shadow: none;
+}
+
+/* Accordion */
+.accordion-item {
+   border: 1px solid #ebeef4;
+}
+
+.accordion-button:focus {
+   outline: 0;
+   box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+   color: rgb(159, 116, 0);
+   background-color: #f6f9ff;
+}
+
+.accordion-flush .accordion-button {
+   padding: 15px 0;
+   background: none;
+   border: 0;
+}
+
+.accordion-flush .accordion-button:not(.collapsed) {
+   box-shadow: none;
+   color: rgba(254, 185, 0, 0.8);
+}
+
+.accordion-flush .accordion-body {
+   padding: 0 0 15px 0;
+   color: rgb(255, 213, 97);
+   font-size: 15px;
+}
+
+/* Bordered Tabs */
+.nav-tabs-bordered {
+   border-bottom: 2px solid #ebeef4;
+}
+
+.nav-tabs-bordered .nav-link {
+   margin-bottom: -2px;
+   border: none;
+   color: rgb(108, 79, 0);
+}
+
+.nav-tabs-bordered .nav-link:hover,
+.nav-tabs-bordered .nav-link:focus {
+   color: rgba(254, 185, 0, 0.8);
+}
+
+.nav-tabs-bordered .nav-link.active {
+   background-color: #fff;
+   color: rgba(254, 185, 0, 0.8);
+   border-bottom: 2px solid rgba(254, 185, 0, 0.8);
+}
+
+/*--------------------------------------------------------------
+  # Profie Page
+  --------------------------------------------------------------*/
+.profile .profile-card img {
+   max-width: 120px;
+}
+
+.profile .profile-card h2 {
+   font-size: 24px;
+   font-weight: 700;
+   color: rgb(108, 79, 0);
+   margin: 10px 0 0 0;
+}
+
+.profile .profile-card h3 {
+   font-size: 18px;
+}
+
+.profile .profile-card .social-links a {
+   font-size: 20px;
+   display: inline-block;
+   color: rgb(77, 56, 0, 0.5);
+   line-height: 0;
+   margin-right: 10px;
+   transition: 0.3s;
+}
+
+.profile .profile-card .social-links a:hover {
+   color: rgb(159, 116, 0);
+}
+
+.profile .profile-overview .row {
+   margin-bottom: 20px;
+   font-size: 15px;
+}
+
+.profile .profile-overview .card-title {
+   color: rgb(159, 116, 0);
+}
+
+.profile .profile-overview .label {
+   font-weight: 600;
+   color: rgb(77, 56, 0, 0.6);
+}
+
+.profile .profile-edit label {
+   font-weight: 600;
+   color: rgb(77, 56, 0, 0.6);
+}
+
+.profile .profile-edit img {
+   max-width: 120px;
+}
+
+.btn-file {
+   position: relative;
+   overflow: hidden;
+}
+
+.btn-file input[type=file] {
+   position: absolute;
+   top: 0;
+   right: 0;
+   min-width: 100%;
+   min-height: 100%;
+   font-size: 100px;
+   text-align: right;
+   filter: alpha(opacity=0);
+   opacity: 0;
+   outline: none;
+   cursor: inherit;
+   display: block;
+}
+
+.top-selling {
+   font-size: 14px;
+}
+
+.top-selling .table thead {
+   background: #f6f6fe;
+}
+
+.top-selling .table thead th {
+   border: 0;
+}
+
+.top-selling .table tbody td {
+   vertical-align: middle;
+}
+
+.top-selling img {
+   border-radius: 5px;
+   max-width: 60px;
+}

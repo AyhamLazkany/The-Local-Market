@@ -172,11 +172,11 @@
       <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
         data-portfolio-sort="original-order">
 
-        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200" *ngFor="let store of stores">
+        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-6 col-lg-3 portfolio-item filter-remodeling">
+          <div class="col-6 col-lg-3 portfolio-item filter-remodeling" *ngFor="let store of stores">
             <div class="portfolio-content h-100">
-              <img src="{{baseURL + store.img}}" class="img-fluid" alt="">
+              <img src="{{baseURL + store.img}}" class="img-fluid"style="height: 350px;width: 100%;object-fit: cover;">
               <div class="portfolio-info">
                 <h4>{{store.name}}</h4>
                 <p>{{store.description}}</p>

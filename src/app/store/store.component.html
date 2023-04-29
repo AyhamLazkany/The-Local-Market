@@ -26,31 +26,26 @@
    <!-- ======= store Details Section ======= -->
    <div class="container my-5" *ngFor="let category of store.categories">
 
-      <h2 *ngIf="categoryFound(category) == true" class="text-center" style="font-family: 'Courier New', Courier, monospace;">{{category}}</h2>
-      <hr *ngIf="categoryFound(category) == true" class="bg-warning w-25 rounded-pill border-0 opacity-75 mx-auto" style="height:8px;">
+      <h2 *ngIf="categoryFound(category) == true" class="text-center"
+         style="font-family: 'Courier New', Courier, monospace;">{{category}}</h2>
+      <hr *ngIf="categoryFound(category) == true" class="bg-warning w-25 rounded-pill border-0 opacity-75 mx-auto"
+         style="height:8px;">
 
       <div class="row">
 
-         <div class="col-7 mx-auto col-md-4 col-lg-3 p-1 p-md-3" *ngFor="let prod of productsFound(category)">
+         <div class="col-7 mx-auto col-sm-6 col-lg-4 col-xl-3 p-1 p-sm-3" *ngFor="let prod of productsFound(category)">
 
-            <div class="card">
+            <div class="card" style="cursor: pointer;" (click)="selectProduct(prod)" data-bs-toggle="modal" data-bs-target="#product-dialog">
 
                <div class="image-container">
 
-                  <div class="first">
-
-                     <div class="d-flex justify-content-between align-items-center">
-                        <span *ngIf="favorite == true" class="wishlist bg-warning"><i class="fa fa-heart-o text-danger"></i></span>
-                        <span *ngIf="favorite == false" class="wishlist bg-warning"><i class="fa fa-heart text-danger"></i></span>
-                     </div>
-                  </div>
-
-                  <img src="{{baseURL + prod.img}}" class="img-fluid rounded thumbnail-image" style="width: 100%;height: 350px;object-fit: cover;">
+                  <img src="{{baseURL + prod.img}}" class="img-fluid rounded thumbnail-image"
+                     style="width: 100%;height: 350px;object-fit: cover;">
 
                </div>
 
                <div class="product-detail-container p-2">
-                  
+
                   <div class="d-flex justify-content-between align-items-center" style="min-height: 80px;">
                      <h5 class="dress-name">{{prod.title}}</h5>
                      <div class="d-flex flex-column mb-2">
@@ -60,10 +55,11 @@
 
                   <div class="d-flex justify-content-between align-items-center pt-1">
                      <div class="color-select d-flex ">
-                        <h5><span class="badge rounded-pill bg-danger text-white">{{category}}</span></h5>
+                        <h5><span class="badge rounded-pill bg-white text-danger border border-danger">{{category}}</span></h5>
                      </div>
                      <div class="d-flex" style="min-width: 90px;">
-                        <span class="item-size me-1 mb-1 btn bg-warning text-white" *ngFor="let size of prod.sizes"><b>{{size}}</b></span>
+                        <span class="item-size me-1 mb-1 btn bg-warning text-white"
+                           *ngFor="let size of prod.sizes"><b>{{size}}</b></span>
                      </div>
                   </div>
 
@@ -76,6 +72,7 @@
 
                </div>
             </div>
+
          </div>
 
       </div>
@@ -83,3 +80,6 @@
    </div>
 
 </main>
+<app-product-dialog [product]="product" class="modal fade" id="product-dialog" tabindex="-1"
+   aria-labelledby="exampleModalLabel" aria-hidden="true">
+</app-product-dialog>

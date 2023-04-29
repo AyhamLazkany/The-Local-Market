@@ -67,7 +67,7 @@
                            <th scope="col">Title</th>
                            <th scope="col">Category</th>
                            <th scope="col">Price</th>
-                           <th scope="col">Quantity</th>
+                           <th scope="col">Color</th>
                            <th scope="col">Sizes</th>
                            <th scope="col"></th>
                         </tr>
@@ -78,7 +78,7 @@
                            <td>{{product.title}}</td>
                            <td>{{product.category}}</td>
                            <td>{{product.price}}</td>
-                           <td>{{product.quantity}}</td>
+                           <td>{{product.color}}</td>
                            <td>{{product.sizes}}</td>
                            <td>
                               <span (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm" title="Remove my store image">
@@ -124,6 +124,14 @@
                            <div class="col-md-8 col-lg-9">
                               <input name="title" type="text" class="form-control" id="title"
                                  [(ngModel)]="createdProduct.title" #title="ngModel" required>
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <label for="color" class="col-md-4 col-lg-3 col-form-label">Color</label>
+                           <div class="col-md-8 col-lg-9">
+                              <input name="color" type="text" class="form-control" id="color"
+                                 [(ngModel)]="createdProduct.color" #color="ngModel" required>
                            </div>
                         </div>
 

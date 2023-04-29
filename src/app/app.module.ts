@@ -34,6 +34,9 @@ import { AuthGuardService } from './2.Services/auth-guard.service';
 import { baseURL } from './1.Shared/baseurl';
 import { ProfileComponent } from './profile/profile.component';
 import { MyStoreComponent } from './my-store/my-store.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { ShopCartComponent } from './shop-cart/shop-cart.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { MyStoreComponent } from './my-store/my-store.component';
     StoreComponent,
     ProfileComponent,
     MyStoreComponent,
+    FavoritesComponent,
+    ProductDialogComponent,
+    ShopCartComponent,
   ],
   imports: [
     BrowserModule,
